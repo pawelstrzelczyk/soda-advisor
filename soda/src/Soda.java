@@ -216,7 +216,6 @@ class Soda implements ActionListener {
 //            System.out.println("Next was clicked");
             if (YESRadioButton.isSelected()) {
                 clips.assertString("(next " + answers.get(0).toString()+ ")");
-//                clips.assertString("(next Yes)");
                 clips.assertString("(stateCurr (state " + stateCurr + "))");
             } else if (NORadioButton.isSelected()) {
                 clips.assertString("(next " + answers.get(1).toString()+ ")");
