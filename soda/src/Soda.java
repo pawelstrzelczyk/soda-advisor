@@ -4,6 +4,7 @@ import javax.swing.table.*;
 import java.awt.*;
 import java.awt.event.*;
 import java.text.BreakIterator;
+import java.util.ArrayList;
 import java.util.Locale;
 import java.util.ResourceBundle;
 import java.util.MissingResourceException;
@@ -119,20 +120,36 @@ class Soda implements ActionListener {
         }
 
         String display = "";
+        ArrayList answers = new ArrayList<String>();
         evalStr = "(find-all-facts ((?f UI-state)) " +
                 "(eq ?f:state " + stateCurr + "))";
         mv = (MultifieldValue) clips.eval(evalStr);
         for (PrimitiveValue pv : mv) {
             FactAddressValue fv = (FactAddressValue) pv;
             display = ((LexemeValue) fv.getSlotValue("display")).getValue();
+            MultifieldValue mv2 = (MultifieldValue)fv.getSlotValue("answers");
+            for (int i=0;i<mv2.size();i++){
+                answers.add(mv2.get(i));
+            }
         }
+
+
         System.out.println("display: " + display);
         System.out.println("stateCurr below display: " + stateCurr);
 
         String theText = sodaResources.getString(display);
         text.setText(theText);
+
+
         if(stateCurr.equals("final")){
             button2.setVisible(false);
+            YESRadioButton.setVisible(false);
+            NORadioButton.setVisible(false);
+        }else{
+            String ans1 = sodaResources.getString(answers.get(0).toString());
+            String ans2 = sodaResources.getString(answers.get(1).toString());
+            YESRadioButton.setText(ans1);
+            NORadioButton.setText(ans2);
         }
         executionThread = null;
         isExecuting = false;
@@ -180,12 +197,29 @@ class Soda implements ActionListener {
         System.out.println("stateCurr: " + stateCurr);
 
 
+
+        evalStr = "(find-all-facts ((?f UI-state)) " +
+                "(eq ?f:state " + stateCurr + "))";
+
+        mv = (MultifieldValue) clips.eval(evalStr);
+        ArrayList answers = new ArrayList<String>();
+        for (PrimitiveValue pv : mv) {
+            FactAddressValue fv = (FactAddressValue) pv;
+            MultifieldValue mv2 = (MultifieldValue)fv.getSlotValue("answers");
+            for (int i=0;i<mv2.size();i++){
+                answers.add(mv2.get(i));
+            }
+        }
+        System.out.println("answers: " + answers);
+
         if (ae.getActionCommand().equals("Next")) {
+//            System.out.println("Next was clicked");
             if (YESRadioButton.isSelected()) {
-                clips.assertString("(next Yes)");
+                clips.assertString("(next " + answers.get(0).toString()+ ")");
+//                clips.assertString("(next Yes)");
                 clips.assertString("(stateCurr (state " + stateCurr + "))");
             } else if (NORadioButton.isSelected()) {
-                clips.assertString("(next No)");
+                clips.assertString("(next " + answers.get(1).toString()+ ")");
                 clips.assertString("(stateCurr (state " + stateCurr + "))");
             }
 //            clips.assertString("(stateCurr (state " + stateCurr + "))");
@@ -196,6 +230,8 @@ class Soda implements ActionListener {
         } else if (ae.getActionCommand().equals("Restart")) {
             YESRadioButton.setSelected(false);
             NORadioButton.setSelected(false);
+            YESRadioButton.setVisible(true);
+            NORadioButton.setVisible(true);
             button2.setVisible(true);
             clips.reset();
             runSoda();
@@ -229,6 +265,7 @@ class Soda implements ActionListener {
                     public void run() {
                         try {
                             new Soda();
+                            Soda.clips.run();
                         } catch (CLIPSException e) {
                             e.printStackTrace();
                         }

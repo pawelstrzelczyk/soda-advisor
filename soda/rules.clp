@@ -1,6 +1,8 @@
 (deftemplate UI-state
    (slot display)
-   (slot state (default middle)))
+   (slot state (default middle))
+    (multislot answers)
+)
    
 (deftemplate stateCurr
    (slot state))
@@ -14,7 +16,8 @@
   =>
     (assert
         (UI-state (display WelcomeMessage)
-        (state initial))
+        (state initial)
+        (answers Yes No))
     )
 
 )
@@ -26,7 +29,7 @@
     (retract ?f2)
     (modify ?f1 (state mexico))
     (assert
-        (UI-state (display Mexico) (state mexico))
+        (UI-state (display Mexico) (state mexico) (answers Yes No))
     )
 )
 (defrule ifStartNo
@@ -54,7 +57,7 @@
     (retract ?f2)
     (modify ?f1 (state noobs))
     (assert
-        (UI-state (display Noobs) (state noobs))
+        (UI-state (display Noobs) (state noobs)(answers Yes No))
     )
 )
 ;;;Noobs
@@ -75,7 +78,7 @@
     (retract ?f2)
     (modify ?f1 (state diet))
     (assert
-        (UI-state (display Diet) (state diet))
+        (UI-state (display Diet) (state diet)(answers Yes No))
     )
 )
 ;;;Diet
@@ -86,7 +89,7 @@
     (retract ?f2)
     (modify ?f1 (state ostentatious))
     (assert
-        (UI-state (display Ostentatious) (state ostentatious))
+        (UI-state (display Ostentatious) (state ostentatious)(answers Yes No))
     )
 )
 (defrule ifDietNo
@@ -96,7 +99,7 @@
     (retract ?f2)
     (modify ?f1 (state animated))
     (assert
-        (UI-state (display Animated) (state animated))
+        (UI-state (display Animated) (state animated)(answers Yes No))
     )
 )
 ;;;Ostentatious
@@ -117,7 +120,7 @@
     (retract ?f2)
     (modify ?f1 (state boost))
     (assert
-        (UI-state (display Boost) (state boost))
+        (UI-state (display Boost) (state boost)(answers Yes No))
     )
 )
 ;;;Boost
@@ -159,7 +162,7 @@
     (retract ?f2)
     (modify ?f1 (state juggalo))
     (assert
-        (UI-state (display Juggalo) (state juggalo))
+        (UI-state (display Juggalo) (state juggalo)(answers Yes No))
     )
 )
 ;;;Juggalo
@@ -180,7 +183,7 @@
     (retract ?f2)
     (modify ?f1 (state dirt))
     (assert
-        (UI-state (display Dirt) (state dirt))
+        (UI-state (display Dirt) (state dirt)(answers Yes No))
     )
 )
 ;;;Dirt
@@ -201,7 +204,7 @@
     (retract ?f2)
     (modify ?f1 (state zonday))
     (assert
-        (UI-state (display Zonday) (state zonday))
+        (UI-state (display Zonday) (state zonday)(answers Yes No))
     )
 )
 ;;;Zonday
@@ -222,7 +225,7 @@
     (retract ?f2)
     (modify ?f1 (state brazil))
     (assert
-        (UI-state (display Brazil) (state brazil))
+        (UI-state (display Brazil) (state brazil)(answers Yes No))
     )
 )
 ;;;Brazil
@@ -243,7 +246,7 @@
     (retract ?f2)
     (modify ?f1 (state dole))
     (assert
-        (UI-state (display Dole) (state dole))
+        (UI-state (display Dole) (state dole)(answers Yes No))
     )
 )
 ;;;Dole
@@ -264,7 +267,7 @@
     (retract ?f2)
     (modify ?f1 (state capacitor))
     (assert
-        (UI-state (display Capacitor) (state capacitor))
+        (UI-state (display Capacitor) (state capacitor)(answers Yes No))
     )
 )
 ;;;Capacitor
@@ -285,7 +288,7 @@
     (retract ?f2)
     (modify ?f1 (state gum))
     (assert
-        (UI-state (display Gum) (state gum))
+        (UI-state (display Gum) (state gum)(answers Yes No))
     )
 )
 ;;;Gum
@@ -306,7 +309,7 @@
     (retract ?f2)
     (modify ?f1 (state pulling))
     (assert
-        (UI-state (display Pulling) (state pulling))
+        (UI-state (display Pulling) (state pulling)(answers Yes No))
     )
 )
 ;;;Pulling
@@ -327,7 +330,7 @@
     (retract ?f2)
     (modify ?f1 (state tesco))
     (assert
-        (UI-state (display Tesco) (state tesco))
+        (UI-state (display Tesco) (state tesco)(answers Yes No))
     )
 )
 ;;;Tesco
@@ -348,7 +351,7 @@
     (retract ?f2)
     (modify ?f1 (state picnic))
     (assert
-        (UI-state (display Picnic) (state picnic))
+        (UI-state (display Picnic) (state picnic)(answers Yes No))
     )
 )
 ;;;Picnic
@@ -369,7 +372,7 @@
     (retract ?f2)
     (modify ?f1 (state buyany))
     (assert
-        (UI-state (display BuyAny) (state buyany))
+        (UI-state (display BuyAny) (state buyany)(answers Yes No))
     )
 )
 ;;;BuyAny
@@ -390,7 +393,7 @@
     (retract ?f2)
     (modify ?f1 (state tyler))
     (assert
-        (UI-state (display Tyler) (state tyler))
+        (UI-state (display Tyler) (state tyler)(answers Yes No))
     )
 )
 ;;;Tyler
@@ -411,7 +414,7 @@
     (retract ?f2)
     (modify ?f1 (state root))
     (assert
-        (UI-state (display Root) (state root))
+        (UI-state (display Root) (state root)(answers Yes No))
     )
 )
 ;;;Root
@@ -422,7 +425,7 @@
     (retract ?f2)
     (modify ?f1 (state quality))
     (assert
-        (UI-state (display Quality) (state quality))
+        (UI-state (display Quality) (state quality)(answers Yes No))
     )
 )
 (defrule ifRootNo
@@ -432,7 +435,7 @@
     (retract ?f2)
     (modify ?f1 (state tummy))
     (assert
-        (UI-state (display Tummy) (state tummy))
+        (UI-state (display Tummy) (state tummy)(answers Yes No))
     )
 )
 ;;;Quality
@@ -474,7 +477,7 @@
     (retract ?f2)
     (modify ?f1 (state hfcs))
     (assert
-        (UI-state (display HFCS) (state hfcs))
+        (UI-state (display HFCS) (state hfcs)(answers Yes No))
     )
 )
 ;;;HFCS
@@ -485,7 +488,7 @@
     (retract ?f2)
     (modify ?f1 (state taste))
     (assert
-        (UI-state (display Taste) (state taste))
+        (UI-state (display Taste) (state taste)(answers Yes No))
     )
 )
 (defrule ifHFCSNo
@@ -495,7 +498,7 @@
     (retract ?f2)
     (modify ?f1 (state cherry))
     (assert
-        (UI-state (display Cherry) (state cherry))
+        (UI-state (display Cherry) (state cherry)(answers Yes No))
     )
 )
 ;;;Taste
@@ -537,7 +540,7 @@
     (retract ?f2)
     (modify ?f1 (state caffeine))
     (assert
-        (UI-state (display Caffeine) (state caffeine))
+        (UI-state (display Caffeine) (state caffeine)(answers Yes No))
     )
 )
 ;;;Caffeine
@@ -548,7 +551,7 @@
     (retract ?f2)
     (modify ?f1 (state backpack))
     (assert
-        (UI-state (display Backpack) (state backpack))
+        (UI-state (display Backpack) (state backpack)(answers Yes No))
     )
 )
 (defrule ifCaffeineNo
@@ -579,7 +582,7 @@
     (retract ?f2)
     (modify ?f1 (state sing))
     (assert
-        (UI-state (display Sing) (state sing))
+        (UI-state (display Sing) (state sing)(answers Yes No))
     )
 )
 ;;;Sing
@@ -600,7 +603,7 @@
     (retract ?f2)
     (modify ?f1 (state simpler))
     (assert
-        (UI-state (display Simpler) (state simpler))
+        (UI-state (display Simpler) (state simpler)(answers Yes No))
     )
 )
 ;;;Simpler
