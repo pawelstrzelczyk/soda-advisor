@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/CLIPSJNI/CLIPSJNI.iml" filepath="$PROJECT_DIR$/CLIPSJNI/CLIPSJNI.iml" />
+      <module fileurl="file://$PROJECT_DIR$/soda/soda.iml" filepath="$PROJECT_DIR$/soda/soda.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/soda-advisor3.iml" filepath="$PROJECT_DIR$/.idea/soda-advisor3.iml" />
+    </modules>
+  </component>
+</project>
