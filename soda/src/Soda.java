@@ -14,7 +14,6 @@ import java.util.logging.Logger;
 import net.sf.clipsrules.jni.*;
 
 class Soda implements ActionListener {
-    private JPanel rootPanel;
     private JRadioButton YESRadioButton;
     private JButton button2;
     private JButton button1;
