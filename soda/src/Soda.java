@@ -133,8 +133,8 @@ class Soda implements ActionListener {
         }
 
 
-        System.out.println("display: " + display);
-        System.out.println("stateCurr below display: " + stateCurr);
+        //System.out.println("display: " + display);
+        //System.out.println("stateCurr below display: " + stateCurr);
 
         String theText = sodaResources.getString(display);
         text.setText(theText);
@@ -193,7 +193,7 @@ class Soda implements ActionListener {
             FactAddressValue fv = (FactAddressValue) pv;
             stateCurr = ((LexemeValue) fv.getSlotValue("state")).getValue();
         }
-        System.out.println("stateCurr: " + stateCurr);
+        //System.out.println("stateCurr: " + stateCurr);
 
 
         evalStr = "(find-all-facts ((?f UI-state)) " +
@@ -208,7 +208,7 @@ class Soda implements ActionListener {
                 answers.add(mv2.get(i));
             }
         }
-        System.out.println("answers: " + answers);
+        //System.out.println("answers: " + answers);
 
         if (ae.getActionCommand().equals("Next")) {
 //            System.out.println("Next was clicked");
@@ -236,7 +236,7 @@ class Soda implements ActionListener {
 
             String debug = "(facts)";
             String res = clips.eval(debug).toString();
-            System.out.println(res);
+            //System.out.println(res);
         } else if (ae.getActionCommand().equals("No")) {
             if (YESRadioButton.isSelected()) {
                 YESRadioButton.setSelected(false);
